@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Importing libraries from different path
 sys.path.insert(0, os.path.join(app.root_path, "bin", "stc", "Connection.py"))
-from DatabaseAccess import DatabaseAccess
+from DatabaseAccess import DatabaseQueries
 import test
 
 
@@ -22,7 +22,7 @@ def homepage():
 
 @app.route('/api/products/', methods=['GET'])
 def display_products():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     result = d.list_all()
     return str(json.dumps(result))
 
@@ -35,7 +35,7 @@ def delete_product(product_name):
 
         print(product_name)
 
-        d = DatabaseAccess()
+        d = DatabaseQueries()
         product_id = d.search_product_by_name(product_name)
 
         print("Deleting product with id: " + str(product_id[0]))
@@ -65,7 +65,7 @@ def update_product():
         else:
             category = request.form['product_category']
 
-        d = DatabaseAccess()
+        d = DatabaseQueries()
         d.update_product(
             request.form['product_id'],
             request.form['product_name'],
@@ -79,7 +79,7 @@ def update_product():
 @app.route('/api/create/', methods=['POST'])
 def create_product():
     if request.method == 'POST':
-        d = DatabaseAccess()
+        d = DatabaseQueries()
 
         try:
             if not request.form['product_category']:
@@ -101,7 +101,7 @@ def create_product():
 @app.route('/api/search/<string:product_name>', methods=['GET'])
 def search_product(product_name):
     # print(product_name)
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     product_id = d.search_product_by_name(product_name)
     if product_id is not None:
         data = d.get_product_data(product_id[0])
@@ -110,7 +110,7 @@ def search_product(product_name):
 
 @app.route('/api/read/<int:product_id>', methods=['GET'])
 def get_product_details(product_id):
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     data = d.get_product_data(product_id)
     return str(data)
 
@@ -118,7 +118,7 @@ def get_product_details(product_id):
 @app.route('/api/add_attribute/', methods=['UPDATE'])
 def add_product_attribute():
     if request.method == 'UPDATE':
-        d = DatabaseAccess()
+        d = DatabaseQueries()
         if request.form['attribute_name'] and request.form['attribute_description']:
             try:
                 attribute_name = request.form['attribute_name']
@@ -134,7 +134,7 @@ def add_product_attribute():
 @app.route('/api/delete_attribute/<string:attribute_name>', methods=['DELETE'])
 def remove_product_attribute(attribute_name):
     if request.method == 'DELETE':
-        d = DatabaseAccess()
+        d = DatabaseQueries()
         if attribute_name:
             try:
                 d.remove_attribute(attribute_name)
@@ -146,7 +146,7 @@ def remove_product_attribute(attribute_name):
 
 @app.route('/api/get_attributes/', methods=['GET'])
 def get_product_attributes():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     return json.dumps(d.get_product_attributes())
 
 

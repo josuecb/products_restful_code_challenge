@@ -1,9 +1,14 @@
+# install pymysql using 'pip install pymysql' in terminal
 import pymysql
 
 import Helper
 
 
 class Connection:
+    """
+    Connection class
+        It helps us to access and manage the database.
+    """
     USER = "fc"
     PASSWORD = "fluent_city"
     HOST = "letsdoit.io"
@@ -14,6 +19,11 @@ class Connection:
         print("Connection Object created: ")
 
     def db_connect(self):
+        """
+        This will connect to our database and will return a connection instance
+            otherwise it will return a None object
+        :return: Connection conn
+        """
         try:
             conn = pymysql.connect(
                 user=self.USER,
@@ -29,6 +39,7 @@ class Connection:
             return None
 
     def re_build_database(self, app_path):
+        # Connects to the database
         conn = self.db_connect()
 
         try:
@@ -40,14 +51,18 @@ class Connection:
             print(e)
 
         if conn is not None:
+            # If connection exists
             cur = conn.cursor()
 
+            # Get the sql file from our assets file and make a tuple
             queries = Helper.get_squema(app_path).split("\n")
 
             for q in queries:
+                # loop multiple queries that are in our sql file
                 try:
-                    cur.execute(q)
+                    cur.execute(q)  # Execute each query
                 except Exception as e:
+                    # close connection if some error exists
                     conn.rollback()
                     conn.close()
                     print(e)
@@ -57,6 +72,10 @@ class Connection:
             print("No Action was executed")
 
     def drop_database(self):
+        """
+        This method will drop the database if exists
+        :return:
+        """
         conn = self.db_connect()
         if conn is not None:
             cur = conn.cursor()
@@ -71,4 +90,4 @@ class Connection:
                 print(e)
             print("Database Dropped")
         else:
-            print("No Action was executed")
+            print("No Action was executed, because we couldn't connect to the database.")

@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Importing libraries from different path
 sys.path.insert(0, os.path.join(app.root_path, "bin", "stc", "Connection.py"))
-from DatabaseAccess import DatabaseAccess
+from DatabaseAccess import DatabaseQueries
 from Connection import Connection
 
 
@@ -22,7 +22,7 @@ def drop_database():
 
 
 def create_test_products():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     try:
         d.insert_product("banana", 1.88, "food")
     except Exception as e:
@@ -50,7 +50,7 @@ def create_test_products():
 
 
 def read_test():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     print(d.get_product_data(d.search_product_by_name("blue cotton t-shirt")[0]))
     print(d.get_product_data(d.search_product_by_name("gold necklace")[0]))
     print(d.get_product_data(d.search_product_by_name("stove")[0]))
@@ -59,7 +59,7 @@ def read_test():
 
 
 def add_default_categories():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     d.insert_category("electronics")
     d.insert_category("food")
     d.insert_category("handmade")
@@ -68,28 +68,28 @@ def add_default_categories():
 
 
 def update_test():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
 
     d.update_product(6, "strawberry", 2.10, "food")
 
 
 def search_test():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     print(d.search_product_by_name("strawb"))
 
 
 def get_all_products():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     print(json.dumps(d.list_all()))
 
 
 def add_product_attribute():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     d.add_attribute("joder", "VARCHAR(100)")
 
 
 def remove_product_attribute():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     try:
         d.remove_attribute("joder")
     except Exception as e:
@@ -105,7 +105,7 @@ def remove_product_attribute():
 
 
 def get_attributes():
-    d = DatabaseAccess()
+    d = DatabaseQueries()
     print(d.get_product_attributes())
 
 
