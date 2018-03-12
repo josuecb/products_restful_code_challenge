@@ -4,9 +4,9 @@ import Helper
 
 
 class Connection:
-    USER = "root"
-    PASSWORD = ""
-    HOST = "127.0.0.1"
+    USER = "fc"
+    PASSWORD = "fluent_city"
+    HOST = "letsdoit.io"
     PORT = 3306
     DATABASE = "fluent_city"
 
