@@ -30,6 +30,15 @@ class Connection:
 
     def re_build_database(self, app_path):
         conn = self.db_connect()
+
+        try:
+            """
+            Drops database to delete previous one
+            """
+            self.drop_database()
+        except Exception as e:
+            print(e)
+
         if conn is not None:
             cur = conn.cursor()
 

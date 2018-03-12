@@ -13,7 +13,7 @@ from Connection import Connection
 
 def build_database():
     c = Connection()
-    c.re_build_database()
+    c.re_build_database(app.root_path)
 
 
 def drop_database():

@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Importing libraries from different path
 sys.path.insert(0, os.path.join(app.root_path, "bin", "stc", "Connection.py"))
 from DatabaseAccess import DatabaseAccess
-from test import *
+import test
 
 
 @app.route('/')
@@ -153,16 +153,19 @@ def get_product_attributes():
 @app.route('/api/build_database/', methods=['GET'])
 def build_database():
     test.build_database()
+    return "Database built."
 
 
 @app.route('/api/delete_database/', methods=['GET'])
 def drop_database():
     test.drop_database()
+    return "Database dropped!."
 
 
 @app.route('/api/populate_database/', methods=['GET'])
 def populate_database():
     test.create_test_products()
+    return "Database populated!."
 
 
 if __name__ == "__main__":
