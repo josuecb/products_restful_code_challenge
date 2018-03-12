@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    {% for product in result %}
+    <div style="display: flex;">
+        {% for attr in product %}
+        <div style="display: inline-block; margin: 8px 16px">
+            {{ product[attr] }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
