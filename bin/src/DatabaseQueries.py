@@ -1,3 +1,7 @@
+"""
+    @author: Josue Carbonel
+    @date:  3/12/2018
+"""
 import time
 
 from Connection import Connection

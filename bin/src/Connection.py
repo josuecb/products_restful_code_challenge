@@ -1,3 +1,8 @@
+"""
+    @author: Josue Carbonel
+    @date:  3/12/2018
+"""
+
 # install pymysql using 'pip install pymysql' in terminal
 import pymysql
 

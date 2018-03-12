@@ -1,3 +1,9 @@
+"""
+    @author: Josue Carbonel
+    @date:  3/12/2018
+"""
+
+
 class Product:
     """
     Product class
