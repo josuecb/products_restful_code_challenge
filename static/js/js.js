@@ -20,6 +20,77 @@ $(document).ready(function () {
     var cvw = $('#content-view-wrapper');
     var aat = $('#api-action-title');
 
+    buildDbBtn.on('click', function () {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+                try {
+                    var response = readBody(xhr);
+                    console.log(response);
+                } catch (e) {
+                    throw "This is not a json object"
+                }
+            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
+                console.log("An error ocurred");
+                console.log(readBody(xhr))
+            }
+
+
+        };
+
+        xhr.open('GET', '/api/build_database/', true);
+        xhr.send();
+    });
+
+    popuDbBtn.on('click', function () {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+                try {
+                    var response = readBody(xhr);
+                    console.log(response);
+                    requestProductAttributes()
+                } catch (e) {
+                    throw "This is not a json object"
+                }
+            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
+                console.log("An error ocurred");
+                console.log(readBody(xhr))
+            }
+
+
+        };
+
+        xhr.open('GET', '/api/populate_database/', true);
+        xhr.send();
+    });
+
+    delDbBtn.on('click', function () {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+                try {
+                    var response = readBody(xhr);
+                    console.log(response);
+                    requestProductAttributes()
+                } catch (e) {
+                    throw "This is not a json object"
+                }
+            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
+                console.log("An error ocurred");
+                console.log(readBody(xhr))
+            }
+
+
+        };
+
+        xhr.open('GET', '/api/delete_database/', true);
+        xhr.send();
+    });
+
     addBtn.on('click', function () {
         /**
          * Building UI
