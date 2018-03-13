@@ -14,15 +14,26 @@ app = Flask(__name__)
 
 # Importing libraries from different path
 sys.path.insert(0, os.path.join(app.root_path, "bin", "stc", "Connection.py"))
-from DatabaseAccess import DatabaseQueries
+from DatabaseQueries import DatabaseQueries
 import test
 
 
+# This is our home page for our code challenge.
 @app.route('/')
 def homepage():
+    """
+    I built just one page for our project where we have
+    all the specific actions and buttons to get the job done
+
+    I have built a simple UI to manage the database and
+    access to our API
+    :return:
+    """
     t = str(int(round(time.time() * 1000)))
-    print(t)
-    return render_template("main.html", css=t)
+    print("Accessed time: " + t)
+    # @param str t:  we will pass this argument to avoid permanent cache on CSS and JS files
+    # so we will append this time to our CSS and JS link
+    return render_template("main.html", t=t)
 
 
 @app.route('/api/products/', methods=['GET'])

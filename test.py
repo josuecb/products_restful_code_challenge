@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # Importing libraries from different path
 sys.path.insert(0, os.path.join(app.root_path, "bin", "stc", "Connection.py"))
-from DatabaseAccess import DatabaseQueries
+from DatabaseQueries import DatabaseQueries
 from Connection import Connection
 
 
