@@ -6,6 +6,14 @@ body, html, div, section {
     word-wrap: break-word;
 }
 
+.success-color {
+    color: #09d261
+}
+
+.warning-color {
+    color: red;
+}
+
 .button-wrapper, input {
     border-radius: 5px;
 }
@@ -74,7 +82,7 @@ input {
     font-size: 24px;
 }
 
-.title {
+.title, .message-view {
     font-size: 32px;
 }
 

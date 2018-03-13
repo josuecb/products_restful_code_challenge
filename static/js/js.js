@@ -19,20 +19,25 @@ $(document).ready(function () {
     var avw = $('#action-view-wrapper');
     var cvw = $('#content-view-wrapper');
     var aat = $('#api-action-title');
+    var msh = $('#message-system-content > div');
+
+    requestProductAttributes();
 
     buildDbBtn.on('click', function () {
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 try {
                     var response = readBody(xhr);
                     console.log(response);
+                    messageView(response, 'success-color')
                 } catch (e) {
                     throw "This is not a json object"
                 }
-            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
-                console.log("An error ocurred");
+            } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                console.log("An error occurred");
+                messageView("An error occurred", 'warning-color');
                 console.log(readBody(xhr))
             }
 
@@ -47,16 +52,18 @@ $(document).ready(function () {
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 try {
                     var response = readBody(xhr);
                     console.log(response);
+                    messageView(response, 'success-color');
                     requestProductAttributes()
                 } catch (e) {
                     throw "This is not a json object"
                 }
-            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
-                console.log("An error ocurred");
+            } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                console.log("An error occurred");
+                messageView("An error occurred", 'warning-color');
                 console.log(readBody(xhr))
             }
 
@@ -71,16 +78,18 @@ $(document).ready(function () {
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 try {
                     var response = readBody(xhr);
                     console.log(response);
+                    messageView(response, 'success-color');
                     requestProductAttributes()
                 } catch (e) {
                     throw "This is not a json object"
                 }
-            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
-                console.log("An error ocurred");
+            } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                console.log("An error occurred");
+                messageView("An error occurred", 'warning-color');
                 console.log(readBody(xhr))
             }
 
@@ -157,6 +166,8 @@ $(document).ready(function () {
                         try {
                             var response = readBody(xhr);
                             console.log(response);
+                            messageView(response, 'success-color');
+
                             // Clearing value from input
                             inputName.val('');
                             inputPrice.val('');
@@ -167,8 +178,9 @@ $(document).ready(function () {
                         } catch (e) {
                             throw "This is not a json object"
                         }
-                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 403) {
-                        console.log("An error ocurred");
+                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                        console.log("An error occurred");
+                        messageView("An error occurred", 'warning-color');
                         console.log(readBody(xhr))
                     }
 
@@ -259,7 +271,8 @@ $(document).ready(function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                         try {
                             var response = readBody(xhr);
-                            console.log(response)
+                            console.log(response);
+                            messageView(response, 'success-color');
                             // Clearing value from input
                             inputId.val('');
                             inputName.val('');
@@ -271,8 +284,9 @@ $(document).ready(function () {
                         } catch (e) {
                             throw "This is not a json object"
                         }
-                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 403) {
-                        console.log("An error ocurred");
+                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                        console.log("An error occurred");
+                        messageView("An error occurred", 'warning-color');
                         console.log(readBody(xhr))
                     }
 
@@ -330,12 +344,15 @@ $(document).ready(function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                         try {
                             var response = readBody(xhr);
-                            console.log(response)
+                            console.log(response);
+                            messageView(response, 'success-color');
+                            inputId.val('');
                         } catch (e) {
                             throw "This is not a json object"
                         }
-                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 403) {
-                        console.log("An error ocurred");
+                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                        console.log("An error occurred");
+                        messageView("An error occurred", 'warning-color');
                         console.log(readBody(xhr))
                     }
                 };
@@ -392,14 +409,15 @@ $(document).ready(function () {
                         try {
                             var response = readBody(xhr);
                             console.log(response);
-
+                            messageView(response, 'success-color');
                             inputName.val('');
                             requestProductAttributes()
                         } catch (e) {
                             throw "This is not a json object"
                         }
-                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 403) {
-                        console.log("An error ocurred");
+                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                        console.log("An error occurred");
+                        messageView("An error occurred", 'warning-color');
                         console.log(readBody(xhr))
                     }
                 };
@@ -456,13 +474,14 @@ $(document).ready(function () {
                         try {
                             var response = readBody(xhr);
                             console.log(response);
-
+                            messageView(response, 'success-color');
                             inputName.val('');
                         } catch (e) {
                             throw "This is not a json object"
                         }
-                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 403) {
-                        console.log("An error ocurred");
+                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                        console.log("An error occurred");
+                        messageView("An error occurred", 'warning-color');
                         console.log(readBody(xhr))
                     }
                 };
@@ -541,7 +560,7 @@ $(document).ready(function () {
                             // Clearing value from input
                             inputAttrName.val('');
                             inputAttrDescription.val('');
-
+                            messageView(response, 'success-color');
                             // Updating Product list
                             requestProductAttributes()
                         } catch (e) {
@@ -610,14 +629,15 @@ $(document).ready(function () {
                             console.log(response);
                             // Clearing value from input
                             inputAttrName.val('');
-
+                            messageView(response, 'success-color');
                             // Updating Product list
                             requestProductAttributes()
                         } catch (e) {
                             throw "This is not a json object"
                         }
-                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 403) {
-                        console.log("An error ocurred");
+                    } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                        console.log("An error occurred");
+                        messageView("An error occurred", 'warning-color');
                         console.log(readBody(xhr))
                     }
 
@@ -631,6 +651,22 @@ $(document).ready(function () {
 
 
     });
+
+    function messageView(text, color) {
+        // avoid undefined color
+        if (color === undefined)
+            color = '';
+
+        msh.html('');    // clearing message view
+
+        var textContainer = $('<div></div>', {class: color + " message-view"});
+        var messageText = $('<span></span>');
+
+        messageText.html(text);
+        messageText.appendTo(textContainer);
+
+        textContainer.appendTo(msh);
+    }
 
     function attributeView(attr) {
         var itemContainer = $('<div></div>', {
@@ -662,7 +698,7 @@ $(document).ready(function () {
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 try {
                     var attributes = JSON.parse(readBody(xhr));
                     for (var index in attributes) {
@@ -680,8 +716,9 @@ $(document).ready(function () {
                 } catch (e) {
                     throw "This is not a json object"
                 }
-            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
-                console.log("An error ocurred");
+            } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                console.log("An error occurred");
+                messageView("An error occurred", 'warning-color');
                 console.log(readBody(xhr))
             }
 
@@ -697,7 +734,7 @@ $(document).ready(function () {
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 try {
                     var products = JSON.parse(readBody(xhr));
                     for (var index in products) {
@@ -707,8 +744,9 @@ $(document).ready(function () {
                 } catch (e) {
                     throw "This is not a json object"
                 }
-            } else if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 403) {
-                console.log("An error ocurred");
+            } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
+                console.log("An error occurred");
+                messageView("An error occurred", 'warning-color');
                 console.log(readBody(xhr))
             }
 
