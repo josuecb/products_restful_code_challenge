@@ -56,6 +56,8 @@ to detail in your work.
 
 - Then you can do any action if you want to manage the database.
 
+#### NOTE:
+Front-end responsiveness is not implemented
 
 # API Structure
 

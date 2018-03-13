@@ -36,16 +36,23 @@ def homepage():
     return render_template("main.html", t=t)
 
 
+# Get a list with all product data
 @app.route('/api/products/', methods=['GET'])
 def display_products():
+    """
+    List in json string
+    :return dictionary: list of all products as json
+    """
     d = DatabaseQueries()
     result = d.list_all()
     return str(json.dumps(result))
 
 
+# Deletes the product with specific product name
 @app.route('/api/delete/<string:product_name>', methods=['DELETE'])
 def delete_product(product_name):
     if request.method == 'DELETE':
+        # avoids an empty entry
         if product_name is '':
             return "Product name is empty."
 
@@ -65,17 +72,21 @@ def delete_product(product_name):
     return "false"
 
 
+# Updates the product by specifying the id of the product
 @app.route('/api/update/', methods=['UPDATE'])
 def update_product():
     if request.method == 'UPDATE':
+        # avoids empty id
         if not request.form['product_id']:
             return "Specify product id."
 
+        # Make price optional to modify if empty
         if not request.form['product_price']:
             price = None
         else:
             price = request.form['product_price']
 
+        # make category optional to modify if empty
         if not request.form['product_category']:
             category = None
         else:
@@ -92,12 +103,14 @@ def update_product():
         return "Product updated!"
 
 
+# Creates or Inserts the product
 @app.route('/api/create/', methods=['POST'])
 def create_product():
     if request.method == 'POST':
         d = DatabaseQueries()
 
         try:
+            # make category optional to modify if empty
             if not request.form['product_category']:
                 category = None
             else:
