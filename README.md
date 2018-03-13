@@ -1,5 +1,7 @@
 # FLUENT CITY CODE CHALLENGE
 
+- Run __init__.py to start the server.
+
 ## Challenge
 
 #### Description:
