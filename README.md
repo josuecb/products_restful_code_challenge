@@ -1,6 +1,8 @@
 # FLUENT CITY CODE CHALLENGE
 
 ## Challenge
+
+#### Description:
 We ask that you use Python. At Fluent City we use Django and Django Rest Framework but you are welcome to pick any 3rd party library you like.
 Alternatively, if you prefer, you can roll your own implementation.
 
@@ -37,3 +39,10 @@ we can be efficient.
 
 - 5) Make sure to include unit tests. It's important to know there is attention
 to detail in your work.
+
+# Requisites
+
+- Uses python v2.7
+- Install python Flask framework.
+- Install pymysql api to access to MySQL database.
+

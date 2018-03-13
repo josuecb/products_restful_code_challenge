@@ -8,7 +8,7 @@ import os
 import sys
 
 import time
-from flask import Flask, render_template, flash, request
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
