@@ -46,3 +46,31 @@ to detail in your work.
 - Install python Flask framework.
 - Install pymysql api to access to MySQL database.
 
+# Project description
+
+
+# API Structure
+
+### Asked
+
+```
+- API LINK                                          METHOD_TYPE         DESCRIPTION
+- '/api/delete/<string:product_name>'               DELETE              Delete
+- '/api/update/'                                    UPDATE              Update
+- '/api/products/'                                  GET                 List
+- '/api/create/'                                    POST                Create
+- '/api/search/<string:product_name>'               GET                 Search
+- '/api/read/<int:product_id>'                      GET                 Read
+- '/api/add_attribute/'                             UPDATE              Add Attribute
+- '/api/delete_attribute/<string:attribute_name>'   DELETE              Remove Attribute
+```
+
+### Extras
+
+```
+- API LINK                            METHOD_TYPE           DESCRIPTION
+- '/api/get_attributes/'              GET                   Gets All attributes
+- '/api/build_database/'              GET                   Build the database
+- '/api/delete_database/'             GET                   Drops the database
+- '/api/populate_database/'           GET                   Populate the database with random products
+```
