@@ -127,6 +127,7 @@ def create_product():
         return "Product created!"
 
 
+# search the product by the specific name, if it doesn't exist it will return nothing
 @app.route('/api/search/<string:product_name>', methods=['GET'])
 def search_product(product_name):
     # print(product_name)
@@ -137,6 +138,7 @@ def search_product(product_name):
         return str(data)
 
 
+# Read, searches the product by the the product id, if it doesn't exist it will return nothing
 @app.route('/api/read/<int:product_id>', methods=['GET'])
 def get_product_details(product_id):
     d = DatabaseQueries()
@@ -144,6 +146,7 @@ def get_product_details(product_id):
     return str(data)
 
 
+# Inserts an extra attribute on our product table
 @app.route('/api/add_attribute/', methods=['UPDATE'])
 def add_product_attribute():
     if request.method == 'UPDATE':
@@ -160,8 +163,18 @@ def add_product_attribute():
             return "Attribute added!"
 
 
+# Deletes an attribute from our product table
 @app.route('/api/delete_attribute/<string:attribute_name>', methods=['DELETE'])
 def remove_product_attribute(attribute_name):
+    # Avoids to remove key attributes, it would break the whole api if one of them is deleted
+    # only extra attributes will be able to be deleted
+    if attribute_name is 'id' \
+            or attribute_name is 'category' \
+            or attribute_name is 'timestamp' \
+            or attribute_name is 'name' \
+            or attribute_name is 'price':
+        return "This attributes are not removable."
+
     if request.method == 'DELETE':
         d = DatabaseQueries()
         if attribute_name:
@@ -173,24 +186,28 @@ def remove_product_attribute(attribute_name):
             return "Attribute added!"
 
 
+# This gets all existing attributes in our product table
 @app.route('/api/get_attributes/', methods=['GET'])
 def get_product_attributes():
     d = DatabaseQueries()
     return json.dumps(d.get_product_attributes())
 
 
+# This builds our database
 @app.route('/api/build_database/', methods=['GET'])
 def build_database():
     test.build_database()
     return "Database built."
 
 
+# Drops the database
 @app.route('/api/delete_database/', methods=['GET'])
 def drop_database():
     test.drop_database()
     return "Database dropped!."
 
 
+# Populates the database with dumb data
 @app.route('/api/populate_database/', methods=['GET'])
 def populate_database():
     test.create_test_products()
