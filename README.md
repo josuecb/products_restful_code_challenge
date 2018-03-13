@@ -48,6 +48,14 @@ to detail in your work.
 
 # Project description
 
+# How Front-end Works
+
+- First of all we need to build the database.
+- Then we need to populate the database, there are already predefine products to insert.
+- You can drop the database whenever you need but you need to rebuild the database again if so.
+
+- Then you can do any action if you want to manage the database.
+
 
 # API Structure
 
@@ -55,6 +63,7 @@ to detail in your work.
 
 ```
 - API LINK                                          METHOD_TYPE         DESCRIPTION
+
 - '/api/delete/<string:product_name>'               DELETE              Delete
 - '/api/update/'                                    UPDATE              Update
 - '/api/products/'                                  GET                 List
@@ -69,6 +78,7 @@ to detail in your work.
 
 ```
 - API LINK                            METHOD_TYPE           DESCRIPTION
+
 - '/api/get_attributes/'              GET                   Gets All attributes
 - '/api/build_database/'              GET                   Build the database
 - '/api/delete_database/'             GET                   Drops the database
