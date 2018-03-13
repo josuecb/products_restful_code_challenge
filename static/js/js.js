@@ -718,7 +718,7 @@ $(document).ready(function () {
                 }
             } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 400) {
                 console.log("An error occurred");
-                messageView("An error occurred", 'warning-color');
+                messageView("Database is empty or doesn't exist. Build it.", 'warning-color');
                 console.log(readBody(xhr))
             }
 
